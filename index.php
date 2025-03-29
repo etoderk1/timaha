@@ -12,9 +12,6 @@ file_put_contents($viewsFile, $views);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>timaha</title>
     <link rel="icon" href="https://i.postimg.cc/GtqcTQkT/photo-2025-03-26-04-58-38.jpg" type="image/jpeg">
-    <!-- Cloudflare Web Analytics -->
-    <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "f2f185ce60cb46ec9b650e1a2ef963d9"}'></script>
-    <!-- End Cloudflare Web Analytics -->
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;500;600;700&display=swap');
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap');
@@ -66,7 +63,6 @@ file_put_contents($viewsFile, $views);
             100% { background-position: 0% 50%; }
         }
         
-        /* Стили для модального окна */
         .modal-overlay {
             position: fixed;
             top: 0;
@@ -577,7 +573,7 @@ file_put_contents($viewsFile, $views);
                         <path d="M12 5c-7.633 0-9.927 6.617-9.948 6.684L1.946 12l.105.316C2.073 12.383 4.367 19 12 19s9.927-6.617 9.948-6.684l.106-.316-.105-.316C21.927 11.617 19.633 5 12 5zm0 11c-2.206 0-4-1.794-4-4s1.794-4 4-4 4 1.794 4 4-1.794 4-4 4z"/>
                         <path d="M12 10c-1.084 0-2 .916-2 2s.916 2 2 2 2-.916 2-2-.916-2-2-2z"/>
                     </svg>
-                    <span id="views-count">Загрузка...</span>
+                    <span id="views-count"><?= $views ?> просмотров</span>
                 </div>
                 
                 <!-- Social Links -->
@@ -644,7 +640,6 @@ file_put_contents($viewsFile, $views);
         const profileCard = document.getElementById('profile-card');
         const modalOverlay = document.getElementById('modal-overlay');
         const modalButton = document.getElementById('modal-button');
-        const viewsCount = document.getElementById('views-count');
         
         let isPlaying = false;
         
@@ -749,23 +744,6 @@ file_put_contents($viewsFile, $views);
             profileCard.style.setProperty('--mouse-y', `${y}px`);
         }
         
-        // Simulate views count (in a real app, you would fetch this from Cloudflare Analytics API)
-        function updateViewsCounter() {
-            // This is a simulation - in production you would need to:
-            // 1. Set up Cloudflare Analytics
-            // 2. Use their API to fetch the actual views count
-            // 3. Update the counter with the real data
-            
-            // For demo purposes, we'll simulate a random number
-            const randomViews = Math.floor(Math.random() * 1000) + 500;
-            viewsCount.textContent = `${randomViews.toLocaleString()} просмотров`;
-            
-            // In a real implementation, you would need to:
-            // - Set up a server-side script to track views
-            // - Or use Cloudflare's API if available
-            // - Or use another analytics service that provides an API
-        }
-        
         // Event listeners
         playBtn.addEventListener('click', togglePlay);
         audio.addEventListener('timeupdate', updateProgress);
@@ -784,9 +762,6 @@ file_put_contents($viewsFile, $views);
             if (durationSeconds < 10) durationSeconds = `0${durationSeconds}`;
             songTime.textContent = `0:00 / ${durationMinutes}:${durationSeconds}`;
         });
-        
-        // Initialize views counter
-        updateViewsCounter();
     </script>
 </body>
 </html>
